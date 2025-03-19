@@ -39,7 +39,6 @@
     {"id":{"name":"ResourceObj","path":"objects/ResourceObj/ResourceObj.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"BehaviorSequncing","path":"scripts/BehaviorSequncing/BehaviorSequncing.yy",},},
-    {"id":{"name":"Movement","path":"scripts/Movement/Movement.yy",},},
     {"id":{"name":"UtilityModule","path":"scripts/UtilityModule/UtilityModule.yy",},},
     {"id":{"name":"Circle16Img","path":"sprites/Circle16Img/Circle16Img.yy",},},
     {"id":{"name":"Square16Img","path":"sprites/Square16Img/Square16Img.yy",},},

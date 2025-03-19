@@ -1,28 +1,21 @@
 function utility_module(_directives)constructor{
     directives=_directives
     currentDirective=undefined
-    highestValence=0
     update = function(){
-        var _nextDirectiveIndex=-1
         for (var i=0;i<array_length(directives);i++){
             directives[i].update()
-            if directives[i].valence > highestValence {
-                highestValence=directives[i].valence
-                _nextDirectiveIndex=i
-            }
         }
-        if _nextDirectiveIndex != -1{
-            var _lock = false
+        var _highest = find_highest_valence()
+        if _highest != -1{
+            if directives[ _highest] != currentDirective {
+                if currentDirective == undefined || !directives[_highest].currentlyLocked
+                    initialize_directive(_highest)
+            }
             if currentDirective != undefined {
                 if !currentDirective.currentlyLocked {
                     currentDirective.stop()
-                    _lock = true
                 }
             }
-            if (!_lock){
-                currentDirective=directives[_nextDirectiveIndex]
-                directives[_nextDirectiveIndex].start()
-            } 
         }
     }
     satisfy = function(_name,_amount){
@@ -31,27 +24,60 @@ function utility_module(_directives)constructor{
                 directives[i].satisfy(_amount)
         }
     }
+    find_highest_valence = function(){
+        var _highestIndex=-1
+        var _highestValence=-1
+        for (var i=0;i<array_length(directives);i++){
+            if directives[i].valence > _highestValence {
+                _highestValence=directives[i].valence
+                _highestIndex=i
+            }
+        }
+        return _highestIndex
+    }
+    initialize_directive = function(_index){
+        currentDirective=directives[_index]
+        for (var i=0;i<array_length(directives);i++){
+            if i==_index{
+                directives[i].start()
+            } else {
+                directives[i].stop()
+            }
+        }
+    }
 }
-function directive(_name,_sequence,_valence=0,_rate=0)constructor{
+function directive(_name,_sequence,_valence=0,_rate=0,_lockable=true)constructor{
     name=_name
     valence=_valence
     rate=_rate
     currentlyLocked=false
     sequence=_sequence
+    lockable=_lockable
+
+    static gameSpeed = game_get_speed(gamespeed_fps)
     satisfy = function(_amount){
-        valence = clamp(valence-clamp(_amount,-1,1),0,1)
+        valence = clamp(valence-_amount,0,1)
         currentlyLocked=false
     }
     update = function(){
-        valence = clamp(valence+rate*delta_time,0,1)
+        valence = clamp(valence+rate*(delta_time/gameSpeed),0,1)
         sequence.update()
+        if sequence.startTime == -1
+            stop()
     }
     start = function(){
-        currentlyLocked=true
-        sequence.start()
+        if lockable {
+            currentlyLocked=true
+            sequence.start()
+        }
+        if !lockable || !currentlyLocked
+            sequence.start()
     }
     stop = function(){
         currentlyLocked=false
         sequence.stop()
     }
 }
+
+
+
