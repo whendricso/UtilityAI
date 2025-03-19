@@ -60,7 +60,7 @@ function directive(_name,_sequence,_valence=0,_rate=0,_lockable=true)constructor
         currentlyLocked=false
     }
     update = function(){
-        valence = clamp(valence+rate*(delta_time/gameSpeed),0,1)
+        valence = clamp(valence+rate*(delta_time/1000000),0,1)
         sequence.update()
         if sequence.startTime == -1
             stop()
