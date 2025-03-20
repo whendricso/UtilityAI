@@ -1,4 +1,4 @@
-function utility_module(_directives)constructor{
+function utility_module(_directives=[])constructor{
     directives=_directives
     currentDirective=undefined
     update = function(){
@@ -10,11 +10,6 @@ function utility_module(_directives)constructor{
             if directives[ _highest] != currentDirective {
                 if currentDirective == undefined || !directives[_highest].currentlyLocked
                     initialize_directive(_highest)
-            }
-            if currentDirective != undefined {
-                if !currentDirective.currentlyLocked {
-                    currentDirective.stop()
-                }
             }
         }
     }
@@ -41,7 +36,8 @@ function utility_module(_directives)constructor{
             if i==_index{
                 directives[i].start()
             } else {
-                directives[i].stop()
+                if directives[i]!=currentDirective
+                    directives[i].stop()
             }
         }
     }
@@ -54,24 +50,18 @@ function directive(_name,_sequence,_valence=0,_rate=0,_lockable=true)constructor
     sequence=_sequence
     lockable=_lockable
 
-    static gameSpeed = game_get_speed(gamespeed_fps)
     satisfy = function(_amount){
         valence = clamp(valence-_amount,0,1)
         currentlyLocked=false
     }
     update = function(){
         valence = clamp(valence+rate*(delta_time/1000000),0,1)
-        sequence.update()
-        if sequence.startTime == -1
-            stop()
     }
     start = function(){
-        if lockable {
-            currentlyLocked=true
-            sequence.start()
-        }
         if !lockable || !currentlyLocked
             sequence.start()
+        if lockable
+            currentlyLocked=true
     }
     stop = function(){
         currentlyLocked=false

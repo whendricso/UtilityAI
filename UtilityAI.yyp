@@ -36,11 +36,13 @@
   "resources":[
     {"id":{"name":"CharacterObj","path":"objects/CharacterObj/CharacterObj.yy",},},
     {"id":{"name":"HomeBaseObj","path":"objects/HomeBaseObj/HomeBaseObj.yy",},},
+    {"id":{"name":"HourglassObj","path":"objects/HourglassObj/HourglassObj.yy",},},
     {"id":{"name":"ResourceObj","path":"objects/ResourceObj/ResourceObj.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"BehaviorSequncing","path":"scripts/BehaviorSequncing/BehaviorSequncing.yy",},},
     {"id":{"name":"UtilityModule","path":"scripts/UtilityModule/UtilityModule.yy",},},
     {"id":{"name":"Circle16Img","path":"sprites/Circle16Img/Circle16Img.yy",},},
+    {"id":{"name":"HourglassImg","path":"sprites/HourglassImg/HourglassImg.yy",},},
     {"id":{"name":"Square16Img","path":"sprites/Square16Img/Square16Img.yy",},},
     {"id":{"name":"Triangle16Img","path":"sprites/Triangle16Img/Triangle16Img.yy",},},
   ],

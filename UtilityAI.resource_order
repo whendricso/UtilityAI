@@ -19,7 +19,9 @@
   "ResourceOrderSettings":[
     {"name":"CharacterObj","order":2,"path":"objects/CharacterObj/CharacterObj.yy",},
     {"name":"HomeBaseObj","order":1,"path":"objects/HomeBaseObj/HomeBaseObj.yy",},
+    {"name":"HourglassObj","order":3,"path":"objects/HourglassObj/HourglassObj.yy",},
     {"name":"UtilityModule","order":1,"path":"scripts/UtilityModule/UtilityModule.yy",},
+    {"name":"HourglassImg","order":3,"path":"sprites/HourglassImg/HourglassImg.yy",},
     {"name":"Square16Img","order":1,"path":"sprites/Square16Img/Square16Img.yy",},
     {"name":"Triangle16Img","order":2,"path":"sprites/Triangle16Img/Triangle16Img.yy",},
   ],
