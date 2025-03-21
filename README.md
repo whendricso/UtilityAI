@@ -1,7 +1,10 @@
 # Utility AI for GameMaker
 > Quickly add life to NPCs in complex gameplay situations
+> 
 > Simple settings produce robust results
+>
 > AI adapts to changing game situations
+>
 > Optional custom interrupt logic 
 
 ## Introduction
