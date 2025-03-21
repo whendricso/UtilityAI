@@ -1,3 +1,5 @@
+/// @desc An AI mind with a array of objectives which are evaluated and the one with the greatest utility is acted upon 
+/// @param {array} [_directives]=[] An array of directives that should be available to this utility module 
 function utility_module(_directives=[])constructor{
     directives=_directives
     currentDirective=undefined
@@ -19,12 +21,17 @@ function utility_module(_directives=[])constructor{
             }
         }
     }
+    //@desc Satisfies a directive by name 
+    //@param {string} _name The name of the directive we want to satisfy 
+    //@param {real} [_amount]=1 Value between zero and one indicating how much to satisfy the directive. Negative numbers increase the valence instead 
     satisfy = function(_name,_amount=1){
         for (var i=0;i<array_length(directives);i++){
             if directives[i].name == _name
                 directives[i].satisfy(_amount)
         }
     }
+    //@desc find the Directive in the Utility Module with the highest valence
+    //@returns {real} the index of the directive with the highest valence
     find_highest_valence = function(){
         var _highestIndex=-1
         var _highestValence=-1
@@ -36,6 +43,7 @@ function utility_module(_directives=[])constructor{
         }
         return _highestIndex
     }
+    //@ignore
     initialize_directive = function(_index){
         currentDirective=directives[_index]
         for (var i=0;i<array_length(directives);i++){
@@ -46,6 +54,11 @@ function utility_module(_directives=[])constructor{
             }
         }
     }
+    //@desc draw debug information with optional background
+    //@param {real} _x x coordinate (top-left)
+    //@param {real} _y y coordinat (top-left)
+    //@param {real} _separation height of each line
+    //@param {real} _bgWidth if greater than 0, how wide should the box behind the debug text be?
     draw = function(_x,_y,_separation=16,_bgWidth=0){
         var _cumulativeOffset = 0
         _cumulativeOffset+=_separation
@@ -104,11 +117,13 @@ function directive(_name,_sequence,_valence=0,_rate=0,_predicate=function(){retu
         if currentlyLocked && breakoutPredicate()
             stop()
     }
+    //@ignore
     start = function(){
         if !currentlyLocked
             sequence.start()
         currentlyLocked=true
     }
+    //@ignore
     stop = function(){
         if currentlyLocked
             sequence.stop()
