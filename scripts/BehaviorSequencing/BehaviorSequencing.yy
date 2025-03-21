@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"BehaviorSequncing",
+  "%Name":"BehaviorSequencing",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"BehaviorSequncing",
+  "name":"BehaviorSequencing",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",
