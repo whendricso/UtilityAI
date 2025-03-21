@@ -1,1 +1,2 @@
-utilityModule.satisfy("Return",1)
+utilityModule.satisfy("Return")
+utilityModule.satisfy("Recoup",-0.05)
